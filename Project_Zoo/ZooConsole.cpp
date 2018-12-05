@@ -78,8 +78,8 @@ void ZooConsole::startMenu()
 	clearScreen();
 	cout << "Добро пожаловать!";
 	Sleep(2000);
-	/*this->setZooNameMenu();
-	this->setCityNameMenu();*/
+	this->setZooNameMenu();
+	this->setCityNameMenu();
 }
 
 void ZooConsole::mainMenu()
