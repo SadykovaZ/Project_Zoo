@@ -12,6 +12,8 @@ void Kangaroo::getInfo() const
 {
 	Animal::getInfo();
 	cout << "\nРазмер сумки: " << bagSize << endl;	
+	cout << "-------------------------------------\n";
+
 }
 string Kangaroo::voice() const
 {

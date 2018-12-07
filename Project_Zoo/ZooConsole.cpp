@@ -1,9 +1,16 @@
-#include "ZooConsole.h"
+ï»¿#include "ZooConsole.h"
 
 ZooConsole::ZooConsole()
 	:z("", "")
 {
-	startMenu();
+	try
+	{
+		startMenu();
+	}
+	catch (exception&e)
+	{
+		cout << e.what();
+	}
 }
 
 void ZooConsole::start()
@@ -76,10 +83,17 @@ ZooConsole::~ZooConsole()
 void ZooConsole::startMenu()
 {
 	clearScreen();
-	cout << "Äîáðî ïîæàëîâàòü!";
+	cout << "Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ!";
 	Sleep(2000);
-	this->setZooNameMenu();
-	this->setCityNameMenu();
+	/*system("cls");
+	cout << "ÐŸÐ¾Ð´Ð¾Ð¶Ð´Ð¸Ñ‚Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ Ð·Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÑ‚ÑÑ";
+	for (size_t i = 0; i < 5; i++)
+	{
+		cout << ".";
+		Sleep(1000);
+	}*/
+	//this->setZooNameMenu();
+	//this->setCityNameMenu();
 }
 
 void ZooConsole::mainMenu()
@@ -88,15 +102,15 @@ void ZooConsole::mainMenu()
 
 	while (choise != 4) {
 		clearScreen();
-		cout << "Èìÿ çîîïàðêà: " << z.getZooName();
-		cout << "\nÃîðîä: " << z.getCity();
-		cout << "\nÊîëè÷åñòâî æèâîòíûõ: " << z.getCountOfAnimals();
+		cout << "Ð˜Ð¼Ñ Ð·Ð¾Ð¾Ð¿Ð°Ñ€ÐºÐ°: " << z.getZooName();
+		cout << "\nÐ“Ð¾Ñ€Ð¾Ð´: " << z.getCity();
+		cout << "\nÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ñ‹Ñ…: " << z.getCountOfAnimals();
 		cout << "\n\n-------------\n\n";
 		cout << "\
-		1. Äîáàâèòü íîâîå æèâîòíîå\n\
-		2. Æèâîòíîå ïåðååõàëî\n\
-		3. Ïîêàçàòü èíôîðìàöèþ î æèîâòíûõ\n\
-		4. Âûõîä\n"
+		1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²Ð¾Ðµ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ\n\
+		2. Ð–Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ Ð¿ÐµÑ€ÐµÐµÑ…Ð°Ð»Ð¾\n\
+		3. ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ñ‹Ñ…\n\
+		5. Ð’Ñ‹Ñ…Ð¾Ð´\n"
 			;
 		cin >> choise;
 		switch (choise)
@@ -112,15 +126,18 @@ void ZooConsole::mainMenu()
 			pause();
 			break;
 		case 4:
+			setAnimalInfoMenu();
+			break;
+		case 5:
 			break;
 		default:
-			cout << "Íåïðàâèëüíàÿ êîìàíäà\níàæìèò ëþáóþ êíîïêó ÷òîáû ïðîäîëæèòü\n";
+			cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°\nÐ½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ½Ð¾Ð¿ÐºÑƒ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ\n";
 			pause();
 			clearScreen();
 			break;
 		}
 	}
-	cout << "Äî ñâèäàíèÿ!\n";
+	cout << "Ð”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ!\n";
 }
 
 void ZooConsole::addAnimalMenu()
@@ -128,11 +145,11 @@ void ZooConsole::addAnimalMenu()
 	size_t ch;
 	while (1) {
 		clearScreen();
-		cout << "Âûáåðèòå æèâîòíîå\n";
-		cout << "1. Ìåäâåäü\n2. Êîøêà\n3. Ñëîí\n4. Æèðàô\n5. Êåíãóðó\n6. Îáåçüÿíà\n7. Âûõîä â îñíîâíîå ìåíþ\n";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ\n";
+		cout << "1. ÐœÐµÐ´Ð²ÐµÐ´ÑŒ\n2. ÐšÐ¾ÑˆÐºÐ°\n3. Ð¡Ð»Ð¾Ð½\n4. Ð–Ð¸Ñ€Ð°Ñ„\n5. ÐšÐµÐ½Ð³ÑƒÑ€Ñƒ\n6. ÐžÐ±ÐµÐ·ÑŒÑÐ½Ð°\n7. Ð’Ñ‹Ñ…Ð¾Ð´ Ð² Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ðµ Ð¼ÐµÐ½ÑŽ\n";
 		cin >> ch;
 		if (ch > 7) {
-			cout << "Íåâåðíàÿ ïîçèöèÿ\n";
+			cout << "ÐÐµÐ²ÐµÑ€Ð½Ð°Ñ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ\n";
 			system("pause");
 		}
 		else
@@ -145,11 +162,11 @@ void ZooConsole::addAnimalMenu()
 	string color;
 	int age;
 	clearScreen();
-	cout << "Ââåäèòå èìÿ æèâîòíîãî\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾\n";
 	cin >> name;
-	cout << "Ââåäèòå öâåò æèâîòíîãî\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð²ÐµÑ‚ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾\n";
 	cin >> color;
-	cout << "Ââåäèòå âîçðàñò æèâîòíîãî\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾\n";
 	cin >> age;
 
 	Animal*anim = nullptr;
@@ -159,7 +176,7 @@ void ZooConsole::addAnimalMenu()
 	{
 
 		string type;
-		cout << "Ââåäèòå âèä ìåäâåäÿ\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¸Ð´ Ð¼ÐµÐ´Ð²ÐµÐ´Ñ\n";
 		cin >> type;
 		anim = new Bear(name, color, age, type);
 		break;
@@ -169,20 +186,20 @@ void ZooConsole::addAnimalMenu()
 		string breed;
 		int cntLives;
 
-		cout << "Ââåäèòå ïîðîäó\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ñ€Ð¾Ð´Ñƒ\n";
 		cin >> breed;
-		cout << "Ââåäèòå êîëè÷åñòâî æèçíåé\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¶Ð¸Ð·Ð½ÐµÐ¹\n";
 		cin >> cntLives;
-		anim = new Cat(name, color, age, breed, cntLives);
+		anim = new Cat(name, color, age, breed);
 		break;
 	}
 	case 3:
 	{
 		int trunkLength;
 		bool hasTusk;
-		cout << "Ââåäèòå äëèíó õîáîòà\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ Ñ…Ð¾Ð±Ð¾Ñ‚Ð°\n";
 		cin >> trunkLength;
-		cout << "Åñòü ëè ó ñëîíà áèâíè\n";
+		cout << "Ð•ÑÑ‚ÑŒ Ð»Ð¸ Ñƒ ÑÐ»Ð¾Ð½Ð° Ð±Ð¸Ð²Ð½Ð¸\n";
 		cin >> hasTusk;
 		anim = new Elephant(name, color, age, trunkLength, hasTusk);
 		break;
@@ -190,15 +207,15 @@ void ZooConsole::addAnimalMenu()
 	case 4:
 	{
 		int neckLength;
-		cout << "Ââåäèòå äëèíó øåè\n";
-		cin >> neckLength;		
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ ÑˆÐµÐ¸\n";
+		cin >> neckLength;
 		anim = new Giraffe(name, color, age, neckLength);
 		break;
 	}
 	case 5:
 	{
 		int bagSize;
-		cout << "Ââåäèòå ðàçìåð ñóìêè\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÑÑƒÐ¼ÐºÐ¸\n";
 		cin >> bagSize;
 		anim = new Kangaroo(name, color, age, bagSize);
 		break;
@@ -206,7 +223,7 @@ void ZooConsole::addAnimalMenu()
 	case 6:
 	{
 		string type;
-		cout << "Ââåäèòå âèä îáåçüÿíû\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¸Ð´ Ð¾Ð±ÐµÐ·ÑŒÑÐ½Ñ‹\n";
 		cin >> type;
 		anim = new Monkey(name, color, age, type);
 		break;
@@ -214,24 +231,25 @@ void ZooConsole::addAnimalMenu()
 	}
 	clearScreen();
 	z.addAnimal(anim);
-	cout << "Æèâîòíîå äîáàâëåíî!\n";
+	cout << "Ð–Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!\n";
 	system("pause");
+
 }
 
 void ZooConsole::removeAnimalMenu()
 {
 	while (1) {
 		clearScreen();
-		cout << "Âûáåðèòå ID æèâîòíîãî äëÿ îòãðóçêè" << endl;
+		cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ID Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾ Ð´Ð»Ñ Ð¾Ñ‚Ð³Ñ€ÑƒÐ·ÐºÐ¸" << endl;
 		showShortInfo();
 		int ch;
 		cin >> ch;
 		if (!z.removeAnimalById(ch)) {
-			cout << "Íåâåðíûé ID!\n";
+			cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ID!\n";
 			pause();
 			continue;
 		}
-		cout << "Æèâîòíîå îòãðóæåíî!\n";
+		cout << "Ð–Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ Ð¾Ñ‚Ð³Ñ€ÑƒÐ¶ÐµÐ½Ð¾!\n";
 		pause();
 		return;
 	}
@@ -247,7 +265,7 @@ void ZooConsole::showInfo() const
 void ZooConsole::setZooNameMenu()
 {
 	clearScreen();
-	cout << "Ââåäèòå íàçâàíèå çîîïàðêà\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð¾Ð¾Ð¿Ð°Ñ€ÐºÐ°\n";
 	string name;
 	cin >> name;
 	z.setZooName(name);
@@ -256,7 +274,7 @@ void ZooConsole::setZooNameMenu()
 void ZooConsole::setCityNameMenu()
 {
 	clearScreen();
-	cout << "Ââåäèòå íàçâàíèå ãîðîäâ\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð³Ð¾Ñ€Ð¾Ð´Ð°\n";
 	string name;
 	cin >> name;
 	z.setCity(name);
@@ -268,8 +286,8 @@ void ZooConsole::setAnimalInfoMenu()
 	{
 		clearScreen();
 		showShortInfo();
-		cout << "0- Âåðíóòüñÿ íàçàä";
-		cout << "\nÂûáðàòü ID æèâîòíîãî: ";
+		cout << "0- Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ Ð½Ð°Ð·Ð°Ð´";
+		cout << "\nÐ’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ ID Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾: ";
 		int ch;
 		cin >> ch;
 		if (ch == 0) break;
@@ -277,7 +295,7 @@ void ZooConsole::setAnimalInfoMenu()
 
 		if (anim == nullptr)
 		{
-			cout << "Íåâåðíûé ID\n";
+			cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ID\n";
 			pause();
 			continue;
 		}
@@ -303,8 +321,8 @@ void ZooConsole::editAnimalMenu(Animal * animal)
 		clearScreen();
 		cout << string(typeid(*animal).name()).substr(6) << endl;
 		animal->getInfo();
-		cout << "1. Èçìåíèòü èíôîðìàöèþ î æèâîòíîì\n";
-		cout << "2. Îòãðóçèòü æèâîòíîå\n";
+		cout << "1. Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð¼\n";
+		cout << "2. ÐžÑ‚Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ\n";
 		cout << "0. Back\n";
 		int ch;
 		cin >> ch;
@@ -317,12 +335,12 @@ void ZooConsole::editAnimalMenu(Animal * animal)
 			break;
 		case 2:
 			z.removeAnimalById(animal->getId());
-			cout << "Æèâîòíîå îòãðóæåíî!" << endl;
+			cout << "Ð–Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ Ð¾Ñ‚Ð³Ñ€ÑƒÐ¶ÐµÐ½Ð¾!" << endl;
 			pause();
 			return;
-			break;		
+			break;
 		default:
-			cout << "Íåèçâåñòíàÿ êîìàíäà";
+			cout << "ÐÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ð°Ñ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°";
 			break;
 		}
 	}
@@ -335,53 +353,53 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		clearScreen();
 		animal->getInfo();
 		int index = 0;
-		cout << "\nÂûáåðèòå êàêóþ èíôîðìàöèþ èçìåíèòü\n";
-		cout << ++index << ". Èìÿ\n";
-		cout << ++index << ". Öâåò\n";
-		cout << ++index << ". Âîçðàñò\n";
-		
+		cout << "\nÐ’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐºÐ°ÐºÑƒÑŽ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ\n";
+		cout << ++index << ". Ð˜Ð¼Ñ\n";
+		cout << ++index << ". Ð¦Ð²ÐµÑ‚\n";
+		cout << ++index << ". Ð’Ð¾Ð·Ñ€Ð°ÑÑ‚\n";
+
 		int pos;
 		if (typeid(*animal) == typeid(Bear))
 		{
 			pos = 1;
-			cout << ++index << ". Âèä ìåäâåäÿ\n";			
+			cout << ++index << ". Ð’Ð¸Ð´ Ð¼ÐµÐ´Ð²ÐµÐ´Ñ\n";
 		}
 		else if (typeid(*animal) == typeid(Cat))
 		{
 			pos = 2;
-			cout << ++index << ". Ïîðîäà \n";
-			cout << ++index << ". Êîëè÷åñòâî æèçíåé \n";
+			cout << ++index << ". ÐŸÐ¾Ñ€Ð¾Ð´Ð° \n";
+			cout << ++index << ". ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¶Ð¸Ð·Ð½ÐµÐ¹ \n";
 
 		}
 		else if (typeid(*animal) == typeid(Elephant))
 		{
 			pos = 3;
-			cout << ++index << ". Äëèíà õîáîòà \n";
-			cout << ++index << ". Åñòü ëè áèâíè \n";
+			cout << ++index << ". Ð”Ð»Ð¸Ð½Ð° Ñ…Ð¾Ð±Ð¾Ñ‚Ð° \n";
+			cout << ++index << ". Ð•ÑÑ‚ÑŒ Ð»Ð¸ Ð±Ð¸Ð²Ð½Ð¸ \n";
 
 		}
 		else if (typeid(*animal) == typeid(Giraffe))
 		{
 			pos = 4;
-			cout << ++index << ". Äëèíà øåè \n";
+			cout << ++index << ". Ð”Ð»Ð¸Ð½Ð° ÑˆÐµÐ¸ \n";
 		}
 		else if (typeid(*animal) == typeid(Kangaroo))
 		{
 			pos = 5;
-			cout << ++index << ". Ðàçìåð ñóìêè \n";
+			cout << ++index << ". Ð Ð°Ð·Ð¼ÐµÑ€ ÑÑƒÐ¼ÐºÐ¸ \n";
 		}
 		else if (typeid(*animal) == typeid(Monkey))
 		{
 			pos = 6;
-			cout << ++index << ". Âèä îáåçüÿíû \n";
+			cout << ++index << ". Ð’Ð¸Ð´ Ð¾Ð±ÐµÐ·ÑŒÑÐ½Ñ‹ \n";
 		}
 
-		cout << "0. Âåðíóòüñÿ íàçàä\n";
+		cout << "0. Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ Ð½Ð°Ð·Ð°Ð´\n";
 		int ch;
 		cin >> ch;
 		if (ch < 0 || ch > index)
 		{
-			cout << "Íåèçâåñòíàÿ êîìàíäà!\n";
+			cout << "ÐÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ð°Ñ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°!\n";
 			pause();
 			continue;
 		}
@@ -392,7 +410,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		case 1:
 		{
 			string name;
-			cout << "\n Ââåäèòå íîâîå èìÿ: ";
+			cout << "\n Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð¸Ð¼Ñ: ";
 			cin >> name;
 			animal->setName(name);
 			break;
@@ -400,7 +418,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		case 2:
 		{
 			string color;
-			cout << "\n Ââåäèòå íîâûé âîçðàñò: ";
+			cout << "\n Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚: ";
 			cin >> color;
 			animal->setColor(color);
 			break;
@@ -408,11 +426,11 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		case 3:
 		{
 			int age;
-			cout << "\n Ââåäèòå íîâûé âîçðàñò: ";
+			cout << "\n Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚: ";
 			cin >> age;
 			animal->setAge(age);
 			break;
-		}		
+		}
 		default:
 		{
 			switch (pos)
@@ -420,39 +438,32 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 			case 1:
 				if (ch == 4)
 				{
-					cout << "Ââåäèòå âèä ìåäâåäÿ\n";
+					cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¸Ð´ Ð¼ÐµÐ´Ð²ÐµÐ´Ñ\n";
 					string type;
 					cin >> type;
 					((Bear*)animal)->setType(type);
-				}				
+				}
 				break;
 			case 2:
 				if (ch == 4)
 				{
-					cout << "Ââåäèòå ïîðîäó\n";
+					cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ñ€Ð¾Ð´Ñƒ\n";
 					string breed;
 					cin >> breed;
 					((Cat*)animal)->setBreed(breed);
-				}
-				else
-				{
-					cout << "Ââåäèòå êîëè÷åñòâî æèçíåé\n";
-					int cntLives;
-					cin >> cntLives;					
-					((Cat*)animal)->setCntLives(cntLives);
-				}
+				}				
 				break;
 			case 3:
 				if (ch == 4)
 				{
-					cout << "Ââåäèòå äëèíó õîáîòà\n";
+					cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ Ñ…Ð¾Ð±Ð¾Ñ‚Ð°\n";
 					int trunkLength;
 					cin >> trunkLength;
 					((Elephant*)animal)->setTrunkLength(trunkLength);
 				}
 				else
 				{
-					cout << "Åñòü ëè áèâíè\n";
+					cout << "Ð•ÑÑ‚ÑŒ Ð»Ð¸ Ð±Ð¸Ð²Ð½Ð¸\n";
 					bool hasTusk;
 					cin >> hasTusk;
 					((Elephant*)animal)->setHasTusk(hasTusk);
@@ -461,7 +472,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 			case 4:
 				if (ch == 4)
 				{
-					cout << "Ðàçìåð øåè\n";
+					cout << "Ð Ð°Ð·Ð¼ÐµÑ€ ÑˆÐµÐ¸\n";
 					int neckLength;
 					cin >> neckLength;
 					((Giraffe*)animal)->setNeckLength(neckLength);
@@ -470,7 +481,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 			case 5:
 				if (ch == 4)
 				{
-					cout << "Ðàçìåð ñóìêè\n";
+					cout << "Ð Ð°Ð·Ð¼ÐµÑ€ ÑÑƒÐ¼ÐºÐ¸\n";
 					int bagSize;
 					cin >> bagSize;
 					((Kangaroo*)animal)->setBagSize(bagSize);
@@ -479,7 +490,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 			case 6:
 				if (ch == 4)
 				{
-					cout << "Âèä îáåçüÿíû\n";
+					cout << "Ð’Ð¸Ð´ Ð¾Ð±ÐµÐ·ÑŒÑÐ½Ñ‹\n";
 					string type;
 					cin >> type;
 					((Monkey*)animal)->setType(type);

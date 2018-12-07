@@ -16,8 +16,10 @@ void Elephant::setHasTusk(bool hasTusk)
 void Elephant::getInfo() const
 {
 	Animal::getInfo();
-	cout << "\nДлина хобота: " << trunkLength << endl;
+	cout << "\nДлина хобота: " << trunkLength;
 	cout << "\nНаличие бивней: " << hasTusk << endl;
+	cout << "-------------------------------------\n";
+
 	
 }
 string Elephant::voice() const

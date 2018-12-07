@@ -24,10 +24,11 @@ void Animal::setAge(int age)
 	this->age = age;
 }
 
+
 void Animal::getInfo() const
 {
-	cout << "Название: " << (string(typeid(*this).name()).substr(6)) << endl;
-	cout << "Имя: " << name << "\nЦвет: " << color << "\nВозраст: " << age << endl;
+	cout << "Название: " << (string(typeid(*this).name()).substr(6)) << endl;	
+	cout << "Имя: " << name << "\nЦвет: " << color << "\nВозраст: " << age;
 }
 
 string Animal::getStringFileInfo() const
@@ -43,8 +44,8 @@ string Animal::getStringFileInfo() const
 
 void Animal::readStringInfo(string & str)
 {
-	string info[6];
-	for (size_t i = 0; i < 6; i++)
+	string info[3];
+	for (size_t i = 0; i < 3; i++)
 	{
 		info[i] = str.substr(0, str.find(';'));
 		str = str.substr(str.find(';') + 1);
@@ -52,5 +53,5 @@ void Animal::readStringInfo(string & str)
 	this->setName(info[0]);
 	this->setColor(info[1]);
 	this->setAge(stoi(info[2]));
-	
+
 }
