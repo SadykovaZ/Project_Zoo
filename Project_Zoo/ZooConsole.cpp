@@ -85,13 +85,13 @@ void ZooConsole::startMenu()
 	clearScreen();
 	cout << "Добро пожаловать!";
 	Sleep(2000);
-	/*system("cls");
+	system("cls");
 	cout << "Подождите информация загружается";
 	for (size_t i = 0; i < 5; i++)
 	{
 		cout << ".";
 		Sleep(1000);
-	}*/
+	}
 	//this->setZooNameMenu();
 	//this->setCityNameMenu();
 }
@@ -105,11 +105,12 @@ void ZooConsole::mainMenu()
 		cout << "Имя зоопарка: " << z.getZooName();
 		cout << "\nГород: " << z.getCity();
 		cout << "\nКоличество животных: " << z.getCountOfAnimals();
-		cout << "\n\n-------------\n\n";
+		cout << "\n\n----------------------------------------------------------\n\n";
 		cout << "\
 		1. Добавить новое животное\n\
 		2. Животное переехало\n\
 		3. Показать информацию о животных\n\
+                4. Изменить информацию о животных\n\
 		5. Выход\n"
 			;
 		cin >> choise;
