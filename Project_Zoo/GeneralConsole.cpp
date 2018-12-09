@@ -42,7 +42,7 @@ void GeneralConsole::begin()
 			break;
 		}
 		case 2:
-		{/*
+		{
 			try {
 				z.loadFromFile();
 			}
@@ -50,7 +50,7 @@ void GeneralConsole::begin()
 			{
 				cout << e.what();
 				system("pause");
-			}*/
+			}
 			z.start();
 			break;
 		}
@@ -62,21 +62,27 @@ GeneralConsole::~GeneralConsole()
 {
 	save();
 }
-void GeneralConsole::saveToFile1() const
-{
-	o.saveToFile();
-
-}
 void GeneralConsole::saveToFile2() const
 {
 	z.saveToFile();
-
 }
 void GeneralConsole::save() const
 {
-	saveToFile1();
-	saveToFile2();
+	{
+		saveToFile1();
+	}
+	system("pause");
+	{
+		saveToFile2();
+	}
+	system("pause");
+
 }
+void GeneralConsole::saveToFile1() const
+{
+	o.saveToFile();
+}
+
 void GeneralConsole::startMenu()
 {
 	cout << "Добро пожаловать в организацию владеющей зоопарком!\n";

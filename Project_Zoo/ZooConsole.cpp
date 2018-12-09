@@ -20,6 +20,7 @@ void ZooConsole::start()
 
 void ZooConsole::saveToFile() const
 {
+	cout << "1";
 	ofstream file("zoo.txt");
 	file << z.getZooName() << ";"
 		<< z.getCity() << "\n";
@@ -29,6 +30,7 @@ void ZooConsole::saveToFile() const
 		if (i != z.getCountOfAnimals() - 1) file << endl;
 	}
 	file.close();
+	cout << "2";
 }
 
 void ZooConsole::loadFromFile()

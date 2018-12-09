@@ -15,7 +15,9 @@ OrganizationConsole::~OrganizationConsole()
 }
 void OrganizationConsole::saveToFile() const
 {
+	cout << "1" << endl;
 	ofstream file("org.txt");
+	
 	file << org.getName() << ";"
 		<< to_string(org.getBaseSalary()) << "\n";
 	for (size_t i = 0; i < org.getCountOfEmployee(); i++)
@@ -24,6 +26,7 @@ void OrganizationConsole::saveToFile() const
 		if (i != org.getCountOfEmployee() - 1) file << endl;
 	}
 	file.close();
+	cout << "2" << endl;
 }
 void OrganizationConsole::loadFromFile()
 {
