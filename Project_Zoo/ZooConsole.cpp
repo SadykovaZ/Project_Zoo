@@ -188,10 +188,10 @@ void ZooConsole::addAnimalMenu()
 	}
 	case 2:
 	{
-		string breed;		
+		string breed;
 
 		cout << "Введите породу\n";
-		cin >> breed;		
+		cin >> breed;
 		anim = new Cat(name, color, age, breed);
 		break;
 	}
@@ -261,7 +261,18 @@ void ZooConsole::showInfo() const
 {
 	clearScreen();
 	z.info();
-	
+	while (1)
+	{
+		cout << "Хотите посмотреть что говорит каждое животное (1 - да, 0 - выход в главное меню)\n";
+
+		int ch;
+		cin >> ch;
+		if (ch == 0) break;
+		if (ch == 1)
+		{
+			showRollCall();
+		}
+	}
 }
 
 void ZooConsole::setZooNameMenu()
@@ -314,6 +325,11 @@ void ZooConsole::showShortInfo() const
 			<< setw(10) << left << string(typeid(z[i]).name()).substr(6)
 			<< setw(10) << left << z[i].getName() << endl;
 	}
+}
+
+void ZooConsole::showRollCall() const
+{
+	cout << z.rollCall();
 }
 
 void ZooConsole::editAnimalMenu(Animal * animal)
@@ -370,7 +386,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		{
 			pos = 2;
 			cout << ++index << ". Порода \n";
-			
+
 
 		}
 		else if (typeid(*animal) == typeid(Elephant))
@@ -453,7 +469,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 					string breed;
 					cin >> breed;
 					((Cat*)animal)->setBreed(breed);
-				}				
+				}
 				break;
 			case 3:
 				if (ch == 4)

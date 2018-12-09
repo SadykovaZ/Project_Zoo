@@ -1,3 +1,1 @@
 ;0
-Gardener;trt;5;trrt;5;1;
-Keeper;Алекс;28;Женский;5;1;

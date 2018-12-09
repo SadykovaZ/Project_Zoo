@@ -27,7 +27,7 @@ string Cat::getStringFileInfo() const
 {
 	string res = Animal::getStringFileInfo();
 	res += breed;
-	//res += ';';	
+	res += ';';	
 	return res;
 }
 

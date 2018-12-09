@@ -32,6 +32,7 @@ private:
 	void setCityNameMenu();
 	void setAnimalInfoMenu();
 	void showShortInfo() const;
+	void showRollCall()const;
 	void clearScreen()const { system("cls"); }
 	void pause()const { system("pause"); }
 	void editAnimalMenu(Animal* animal);

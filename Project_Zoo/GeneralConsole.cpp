@@ -43,14 +43,7 @@ void GeneralConsole::begin()
 		}
 		case 2:
 		{
-			try {
-				z.loadFromFile();
-			}
-			catch (exception&e)
-			{
-				cout << e.what();
-				system("pause");
-			}
+			z.loadFromFile();
 			z.start();
 			break;
 		}
