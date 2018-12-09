@@ -119,9 +119,19 @@
     <ClInclude Include="Bear.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="Elephant.h" />
+    <ClInclude Include="GeneralConsole.h" />
     <ClInclude Include="Giraffe.h" />
     <ClInclude Include="Kangaroo.h" />
     <ClInclude Include="Monkey.h" />
+    <ClInclude Include="org\Director.h" />
+    <ClInclude Include="org\Employee.h" />
+    <ClInclude Include="org\Gardener.h" />
+    <ClInclude Include="org\Human.h" />
+    <ClInclude Include="org\Keeper.h" />
+    <ClInclude Include="org\Manager.h" />
+    <ClInclude Include="org\Organization.h" />
+    <ClInclude Include="org\OrganizationConsole.h" />
+    <ClInclude Include="org\Veterinarian.h" />
     <ClInclude Include="Zoo.h" />
     <ClInclude Include="ZooConsole.h" />
   </ItemGroup>
@@ -130,10 +140,20 @@
     <ClCompile Include="Bear.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="Elephant.cpp" />
+    <ClCompile Include="GeneralConsole.cpp" />
     <ClCompile Include="Giraffe.cpp" />
     <ClCompile Include="Kangaroo.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Monkey.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="org\Director.cpp" />
+    <ClCompile Include="org\Employee.cpp" />
+    <ClCompile Include="org\Gardener.cpp" />
+    <ClCompile Include="org\Human.cpp" />
+    <ClCompile Include="org\Keeper.cpp" />
+    <ClCompile Include="org\Manager.cpp" />
+    <ClCompile Include="org\Organization.cpp" />
+    <ClCompile Include="org\OrganizationConsole.cpp" />
+    <ClCompile Include="org\Veterinarian.cpp" />
     <ClCompile Include="Zoo.cpp" />
     <ClCompile Include="ZooConsole.cpp" />
   </ItemGroup>

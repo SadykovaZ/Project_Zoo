@@ -35,7 +35,7 @@ void ZooConsole::loadFromFile()
 {
 	ifstream file("zoo.txt");
 	if (!file)
-		throw exception("Cannot open file!");
+		throw exception("Невозможно открыть файл!");
 	string s;
 	getline(file, s);
 	z.setZooName(s.substr(0, s.find(';')));
@@ -83,7 +83,7 @@ ZooConsole::~ZooConsole()
 void ZooConsole::startMenu()
 {
 	clearScreen();
-	cout << "Добро пожаловать!";
+	/*cout << "Добро пожаловать!";
 	Sleep(2000);
 	system("cls");
 	cout << "Подождите информация загружается";
@@ -91,7 +91,7 @@ void ZooConsole::startMenu()
 	{
 		cout << ".";
 		Sleep(1000);
-	}
+	}*/
 	//this->setZooNameMenu();
 	//this->setCityNameMenu();
 }
@@ -100,7 +100,7 @@ void ZooConsole::mainMenu()
 {
 	int choise = 0;
 
-	while (choise != 4) {
+	while (choise != 5) {
 		clearScreen();
 		cout << "Имя зоопарка: " << z.getZooName();
 		cout << "\nГород: " << z.getCity();
@@ -111,7 +111,7 @@ void ZooConsole::mainMenu()
 		2. Животное переехало\n\
 		3. Показать информацию о животных\n\
                 4. Изменить информацию о животных\n\
-		5. Выход\n"
+		5. Выход на начальный экран выбора\n"
 			;
 		cin >> choise;
 		switch (choise)
@@ -138,7 +138,9 @@ void ZooConsole::mainMenu()
 			break;
 		}
 	}
-	cout << "До свидания!\n";
+	cout << "Спасибо!\n";
+	pause();
+	clearScreen();
 }
 
 void ZooConsole::addAnimalMenu()
@@ -184,13 +186,10 @@ void ZooConsole::addAnimalMenu()
 	}
 	case 2:
 	{
-		string breed;
-		int cntLives;
+		string breed;		
 
 		cout << "Введите породу\n";
-		cin >> breed;
-		cout << "Введите количество жизней\n";
-		cin >> cntLives;
+		cin >> breed;		
 		anim = new Cat(name, color, age, breed);
 		break;
 	}
@@ -369,7 +368,7 @@ void ZooConsole::editAnimalInfo(Animal * animal)
 		{
 			pos = 2;
 			cout << ++index << ". Порода \n";
-			cout << ++index << ". Количество жизней \n";
+			
 
 		}
 		else if (typeid(*animal) == typeid(Elephant))

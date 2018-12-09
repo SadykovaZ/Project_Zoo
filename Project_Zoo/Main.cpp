@@ -1,19 +1,16 @@
-﻿#include"ZooConsole.h"
+#include"GeneralConsole.h"
 void main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	setlocale(LC_ALL, "Rus");
-	ZooConsole z;
+	GeneralConsole g;
 	try {
-		z.loadFromFile();
-
+		g.begin();
 	}
-	catch (exception&w)
-	{
-		cout << w.what();
+	catch (exception&e) {
+		cout << e.what();
 		system("pause");
 	}
-	z.start();
 	system("pause");
 }

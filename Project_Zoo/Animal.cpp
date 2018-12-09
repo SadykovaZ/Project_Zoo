@@ -27,7 +27,7 @@ void Animal::setAge(int age)
 
 void Animal::getInfo() const
 {
-	cout << "Название: " << (string(typeid(*this).name()).substr(6)) << endl;	
+	cout << "Название: " << (string(typeid(*this).name()).substr(6)) << endl;
 	cout << "Имя: " << name << "\nЦвет: " << color << "\nВозраст: " << age;
 }
 
